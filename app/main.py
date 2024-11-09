@@ -15,10 +15,7 @@ def add_border(document):
 
 def add_prefix(document, documents):
     
-    doclist = [] 
-    for i in range(len(documents)):
-        doclist.append(documents[i])
-
-    doclist.append(f'{len(documents)}. {document}')
-    return tuple(doclist)
-
+    prefix = f"{len(documents)}. "
+    new_doc = prefix + document
+    documents = documents + (new_doc,)
+    return document
