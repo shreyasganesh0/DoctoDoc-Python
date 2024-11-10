@@ -19,3 +19,18 @@ def add_prefix(document, documents):
     new_doc = prefix + document
     documents = documents + (new_doc,)
     return document
+def add_format(default_formats, new_format):
+    newdict={}
+    for default in default_formats:
+        newdict[default] = default_formats[default]
+    newdict[new_format] = True
+    return newdict 
+
+
+def remove_format(default_formats, old_format):
+    newdict={}
+    for default in default_formats:
+        newdict[default] = default_formats[default]
+    newdict[old_format] = False 
+    return newdict 
+
