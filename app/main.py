@@ -33,4 +33,13 @@ def remove_format(default_formats, old_format):
         newdict[default] = default_formats[default]
     newdict[old_format] = False 
     return newdict 
-
+def list_files(current_filetree, current_path=""):
+    res=[]
+    def dfs(current_filetree, current_path):
+        if current_filetree== None:
+            res.append(current_path)
+            return
+        for i in current_filetree:
+            dfs(current_filetree[i], current_path+"/"+i)
+    dfs(current_filetree, "")
+    return res
