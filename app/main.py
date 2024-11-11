@@ -68,4 +68,18 @@ def new_collection(initial_docs):
         copylist.append(newval)
         return copylist 
     return new
+# function to demonstrate currying
+def lines_with_sequence(char):
+    def with_char(length):
+        sequence = char * length
+
+        def in_doc(doc):
+            count =0
+            for i in doc.split("\n"):
+                if sequence in i:
+                    count+=1
+            return count
+        return in_doc
+    return with_char
+    
 
