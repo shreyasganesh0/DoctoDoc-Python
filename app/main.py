@@ -117,3 +117,32 @@ def format_as_essay(title, body, conclusion):
     return f"""  Title: {title}
   Body: {body}
   Conclusion: {conclusion}"""
+
+# enforcing sum types using enums
+from enum import Enum
+
+
+class DocFormat(Enum):
+    PDF = 1
+    TXT = 2
+    MD = 3
+    HTML = 4
+
+
+# don't touch above this line
+
+
+def convert_format(content, from_format, to_format):
+    match (from_format, to_format):
+        case (DocFormat.MD, DocFormat.HTML):
+            content = content[2:]
+            content = "<h1>" +content+"</h1>"
+        case(DocFormat.TXT, DocFormat.PDF):
+            content = "[PDF] "+content+" [PDF]"
+        case(DocFormat.HTML, DocFormat.MD):
+            content = content[4:len(content)-5]
+            print(content)
+            content = "# "+ content
+        case _:
+            raise TypeError("Invalid type")
+    return content
