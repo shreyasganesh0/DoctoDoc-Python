@@ -61,3 +61,11 @@ def replace_ellipsis(text):
 def fix_ellipsis(text):
     return text.replace("....", "...")
 
+# function to demonstrate closures
+def new_collection(initial_docs):
+    copylist = initial_docs.copy()
+    def new(newval):
+        copylist.append(newval)
+        return copylist 
+    return new
+
