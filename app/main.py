@@ -1,3 +1,5 @@
+from decorators import *
+
 def stylize_title(document):
     return add_border(center_title(document))
 
@@ -81,5 +83,37 @@ def lines_with_sequence(char):
             return count
         return in_doc
     return with_char
-    
 
+#decorator demo function    
+def markdown_to_text_decorator(func):
+    def wrapper(*args, **kwargs):
+        newlist = []
+        for arg in args:
+            newlist.append(convert_md_to_txt(arg))
+        newdict = {}
+        for k in kwargs:
+            newdict[k] = convert_md_to_txt(kwargs[k])
+        return func(*newlist, **newdict)
+    return wrapper
+
+
+def convert_md_to_txt(doc):
+    lines = doc.split("\n")
+    for i in range(len(lines)):
+        line = lines[i]
+        lines[i] = line.lstrip("# ")
+    return "\n".join(lines)
+
+
+
+@markdown_to_text_decorator
+def concat(first_doc, second_doc):
+    return f"""  First: {first_doc}
+  Second: {second_doc}"""
+
+
+@markdown_to_text_decorator
+def format_as_essay(title, body, conclusion):
+    return f"""  Title: {title}
+  Body: {body}
+  Conclusion: {conclusion}"""
