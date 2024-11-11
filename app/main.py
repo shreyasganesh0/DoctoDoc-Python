@@ -43,3 +43,21 @@ def list_files(current_filetree, current_path=""):
             dfs(current_filetree[i], current_path+"/"+i)
     dfs(current_filetree, "")
     return res
+#below function is an example for function transformations
+def get_filter_cmd(filter_one, filter_two):
+    def filter_cmd(content, option):
+        pass
+
+    return filter_cmd
+
+def replace_bad(text):
+    return text.replace("bad", "good")
+
+
+def replace_ellipsis(text):
+    return text.replace("..", "...")
+
+
+def fix_ellipsis(text):
+    return text.replace("....", "...")
+
